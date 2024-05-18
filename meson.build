@@ -14,7 +14,7 @@ ldflags = []
 if os == 'linux'
   crypto = dependency('libgcrypt', static: true)
   libusbmuxd = dependency('libusbmuxd', static: true)
-  cflags += ['-DHAVE_ASPRINTF', '-DHAVE_VASPRINTF']
+  cflags += ['-DHAVE_ASPRINTF', '-DHAVE_VASPRINTF', '-static']
 else
   crypto = dependency('openssl', version: ['>= 0.9.8'], static: true)
   libusbmuxd = dependency('libusbmuxd-2.0', static: true)
