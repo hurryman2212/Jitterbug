@@ -14,10 +14,12 @@ ldflags = []
 if os == 'linux'
   crypto = dependency('libgcrypt', static: true)
   libusbmuxd = dependency('libusbmuxd', static: true)
+  libplist = dependency('libplist', static: true)
   cflags += ['-DHAVE_ASPRINTF', '-DHAVE_VASPRINTF', '-static']
 else
   crypto = dependency('openssl', version: ['>= 0.9.8'], static: true)
   libusbmuxd = dependency('libusbmuxd-2.0', static: true)
+  libplist = dependency('libplist', static: true)
   cflags += ['-DHAVE_CONFIG_H']
   if os == 'windows'
     ldflags += ['-lIphlpapi']
@@ -34,7 +36,7 @@ if os == 'windows'
 endif
 
 libimobiledevice = dependency('libimobiledevice-1.0', static: true)
-dependencies = [crypto, libusbmuxd, libimobiledevice]
+dependencies = [crypto, libusbmuxd, libplist, libimobiledevice]
 executable('jitterbugpair',
            sources,
            include_directories: incdir,
