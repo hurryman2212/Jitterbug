@@ -28,6 +28,14 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: recursive
+      - name: Build libplist
+        run: |
+          sudo apt-get install build-essential checkinstall git autoconf automake libtool-bin
+          cd Libraries/libplist
+          echo "2.2.0" >.tarball-version
+          ./autogen.sh
+          make
+          sudo make install
       - name: Dependencies
         run: sudo apt install meson libgcrypt-dev libusbmuxd-dev libimobiledevice-dev libunistring-dev libgnutls28-dev
       - name: Build

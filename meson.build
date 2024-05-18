@@ -16,6 +16,7 @@ if os == 'linux'
   libusbmuxd = dependency('libusbmuxd', static: true)
   libplist = dependency('libplist', static: true)
   cflags += ['-DHAVE_ASPRINTF', '-DHAVE_VASPRINTF', '-static']
+  ldflags += ['-lm']
 else
   crypto = dependency('openssl', version: ['>= 0.9.8'], static: true)
   libusbmuxd = dependency('libusbmuxd-2.0', static: true)
